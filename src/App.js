@@ -4,24 +4,24 @@ import Membre from "./components/Membre";
 import Button from "./components/Button";
 import ElemFormulaire from "./components/ElemFormulaire";
 
-const famille = {
-  membre1: {
+const famille = [
+  {
     nom: "Samuel",
     age: 21
   },
-  membre2: {
+  {
     nom: "Olivier",
     age: 20
   },
-  membre3: {
+  {
     nom: "Barley",
     age: 5
   },
-  membre4: {
+  {
     nom: "Patate",
     age: 19
   }
-}
+]
 
 class App extends Component {
   state = {
@@ -30,18 +30,15 @@ class App extends Component {
 
   // Évènement qui ajoute le membre à la liste
   handleSubmit = () => {
-    const famille = { ...this.state.famille };
-    
+    const famille = [ ...this.state.famille ];
+
     const newMembre = {
       nom: this.state.nomMembre,
       age: this.state.ageMembre
     };
 
-    // On créer l'identifiant
-    const identifiantNewMembre = "membre" + (Object.keys(this.state.famille).length+1);
-
     // On ajoute le membre au tableau
-    famille[identifiantNewMembre] = newMembre;
+    famille.push(newMembre);
     
     // On modifie le state
     this.setState({ 
@@ -61,11 +58,6 @@ class App extends Component {
     //On transforme le state en props
     const { famille } = this.state;
 
-    //On loop sur le tableau des membres de la famille pour construire la liste
-    const listeMembres = Object.keys(famille).map((membre, key) => (
-        <Membre key={ key } nom={ famille[membre].nom } age={ famille[membre].age }/>
-    ));
-
     //Affichage
     return (
       <Fragment>
@@ -82,8 +74,11 @@ class App extends Component {
               <Button ajouter={ () => this.handleSubmit() }/>
             </form>
 
-            {/* Affichage de la liste des membres */}
-            { listeMembres }
+            {/* On loop sur le tableau des membres de la famille pour construire la liste */}
+            { famille.map(function(membre, key){
+                return <Membre key={ key } nom={ membre.nom } age={ membre.age }/>;
+              })
+            }
         </div>
       </Fragment>
     )
