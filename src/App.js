@@ -6,26 +6,37 @@ import ElemFormulaire from "./components/ElemFormulaire";
 
 const famille = [
   {
+    id: 0,
     nom: "Samuel",
     age: 21
   },
   {
-    nom: "Olivier",
-    age: 20
+    id: 1,
+    nom: "Patricia",
+    age: 25
   },
   {
-    nom: "Barley",
-    age: 5
+    id: 2,
+    nom: "Gabrielle",
+    age: 22
   },
   {
-    nom: "Patate",
-    age: 19
+    id: 3,
+    nom: "Sylvain",
+    age: 56
+  },
+  {
+    id: 4,
+    nom: "Chantal",
+    age: 54
   }
-]
+];
 
 class App extends Component {
   state = {
-    famille
+    loaded: false,
+    famille: famille,
+    ageTotal: 0
   };
 
   // Évènement qui ajoute le membre à la liste
@@ -33,8 +44,9 @@ class App extends Component {
     const famille = [ ...this.state.famille ];
 
     const newMembre = {
+      id: Object.entries(this.state.famille).length,
       nom: this.state.nomMembre,
-      age: this.state.ageMembre
+      age: parseInt(this.state.ageMembre)
     };
 
     // On ajoute le membre au tableau
@@ -42,21 +54,44 @@ class App extends Component {
     
     // On modifie le state
     this.setState({ 
-      famille 
+      famille: famille
     });
   };
 
   // Évènement qui change le state de la classe lorsque le formulaire est modifié
-  handleChangeInput = (e) => {
+  handleChangeInput = (event) => {
     this.setState({
-        [e.target.name]: e.target.value
+        [event.target.name]: event.target.value
     })
-  }
+  };
+
+  // Changement de l'âge total des membres de la famile
+  handleAge = (idMembre, action) => {
+    const famille = [  ...this.state.famille ];
+    console.log(famille);
+
+    action === "incrementer" ? famille[idMembre].age++ : famille[idMembre].age--;
+
+    this.setState({
+      famille: famille
+    });
+  };
+
+  // Calcul total de l'âge des membres de la famille
+  calculerAgeTotal = () => {
+    let ageTotal = 0;
+    this.state.famille.map((membre) => {
+      return ageTotal += membre.age;
+    });
+
+    return ageTotal;
+  };
 
   // Affichage de la page
   render () {
     //On transforme le state en props
-    const { famille } = this.state;
+    const famille = this.state.famille;
+    const ageTotal = this.calculerAgeTotal();
 
     //Affichage
     return (
@@ -68,17 +103,20 @@ class App extends Component {
             <form className="formAjoutUtilisateur">
               <p><strong>Formulaire d'ajout de membre de la famille</strong></p>
 
-              <ElemFormulaire id="nomMembre" label="Nom du membre" type="text" handleChangeInput={ this.handleChangeInput }/>
+              <ElemFormulaire id="nomMembre" label="Nom du membre" type="text" handleChangeInput={ this.handleChangeInput } />
               <ElemFormulaire id="ageMembre" label="Age du membre" type="number" handleChangeInput={ this.handleChangeInput }/>  
             
-              <Button ajouter={ () => this.handleSubmit() }/>
+              <Button action={ () => this.handleSubmit() } label="Ajouter"/>
             </form>
 
-            {/* On loop sur le tableau des membres de la famille pour construire la liste */}
-            { famille.map(function(membre, key){
-                return <Membre key={ key } nom={ membre.nom } age={ membre.age }/>;
-              })
-            }
+            <p><strong>Âge total des membres de la famille: </strong>{ ageTotal } ans</p>
+
+            <div className="grilleMembres">
+              {/* On loop sur le tableau des membres de la famille pour construire la liste */}
+              { famille.map((membre, key) => {
+                return <Membre key={ key } idMembre={ membre.id } nom={ membre.nom } age={ membre.age } handleAge={ this.handleAge }/>;
+              })}
+            </div>
         </div>
       </Fragment>
     )

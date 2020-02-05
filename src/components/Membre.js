@@ -1,10 +1,16 @@
-import React, { Fragment } from "react";
+import React from "react";
+import Button from "./Button";
 
-const Membre = ({ nom, age }) => {
+const Membre = ({ idMembre, nom, age, handleAge }) => {
+    
     return(
-        <Fragment>
-            <h2>{ nom }: { age }</h2>
-        </Fragment>
+        <div className="membre">
+            <h2>{ nom }</h2>
+            <p><strong>Age: </strong> { age }</p>
+            
+            <Button action={ () => handleAge(idMembre, "incrementer") } label="+"/>
+            <Button action={ () => handleAge(idMembre, "decrementer") } label="-"/>
+        </div>
     )
 };
 
