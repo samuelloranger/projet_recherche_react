@@ -1,61 +1,56 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 import Membre from "./components/Membre";
 import Button from "./components/Button";
 import ElemFormulaire from "./components/ElemFormulaire";
 
-const famille = [
-  {
-    id: 0,
+const famille = {
+  membre1: {
     nom: "Samuel",
     age: 21
   },
-  {
-    id: 1,
+  membre2: {
     nom: "Patricia",
     age: 25
   },
-  {
-    id: 2,
+  membre3: {
     nom: "Gabrielle",
     age: 22
   },
-  {
-    id: 3,
+  membre4: {
     nom: "Sylvain",
     age: 56
   },
-  {
-    id: 4,
+  membre5: {
     nom: "Chantal",
     age: 54
   }
-];
+};
 
 class App extends Component {
   state = {
-    loaded: false,
     famille: famille,
     ageTotal: 0
   };
 
   // Évènement qui ajoute le membre à la liste
   handleSubmit = () => {
-    const famille = [ ...this.state.famille ];
+    const famille = { ...this.state.famille };
 
     const newMembre = {
-      id: Object.entries(this.state.famille).length,
       nom: this.state.nomMembre,
       age: parseInt(this.state.ageMembre)
     };
 
     // On ajoute le membre au tableau
-    famille.push(newMembre);
+    famille[newMembre] = newMembre;
     
     // On modifie le state
     this.setState({ 
       famille: famille
-    });
+    }, 
+      console.log(this.state.famille)
+    );
   };
 
   // Évènement qui change le state de la classe lorsque le formulaire est modifié
@@ -66,11 +61,10 @@ class App extends Component {
   };
 
   // Changement de l'âge total des membres de la famile
-  handleAge = (idMembre, action) => {
-    const famille = [  ...this.state.famille ];
-    console.log(famille);
+  handleAge = (id, action) => {
+    const famille = { ...this.state.famille };
 
-    action === "incrementer" ? famille[idMembre].age++ : famille[idMembre].age--;
+    action === "incrementer" ? famille[id].age++ : famille[id].age--;
 
     this.setState({
       famille: famille
@@ -79,10 +73,14 @@ class App extends Component {
 
   // Calcul total de l'âge des membres de la famille
   calculerAgeTotal = () => {
+    const famille = this.state.famille;
+
     let ageTotal = 0;
-    this.state.famille.map((membre) => {
-      return ageTotal += membre.age;
-    });
+     Object.keys(famille)
+      .map(membre => {
+        ageTotal += famille[membre].age
+        return null;
+      });
 
     return ageTotal;
   };
@@ -95,7 +93,6 @@ class App extends Component {
 
     //Affichage
     return (
-      <Fragment>
         <div className="App">
             <h1>Membres de la famille</h1>
             
@@ -113,12 +110,21 @@ class App extends Component {
 
             <div className="grilleMembres">
               {/* On loop sur le tableau des membres de la famille pour construire la liste */}
-              { famille.map((membre, key) => {
-                return <Membre key={ key } idMembre={ membre.id } nom={ membre.nom } age={ membre.age } handleAge={ this.handleAge }/>;
-              })}
+              { 
+                Object.keys(famille)
+                  .map(membre => (
+                    <Membre 
+                      id={ membre }
+                      key={ membre }
+                      nom={ famille[membre].nom } 
+                      age={ famille[membre].age } 
+                      handleAge={ this.handleAge }
+                    />
+                  ))
+              }
             </div>
+
         </div>
-      </Fragment>
     )
   };
 }
