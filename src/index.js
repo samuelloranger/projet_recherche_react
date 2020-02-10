@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import './chatbox.scss';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Connexion from './components/Connexion';
-import Chatbox from "./Chatbox";
+import MovieList from "./MoviesList";
 import NotFound from './components/NotFound';
 
 const Root = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={ Connexion }></Route>
-            <Route path="/pseudo/:pseudo" component={ Chatbox }></Route>
+            <Route exact path="/" component={ MovieList }></Route>
+            {/* <Route path="/movie/:movie" component={ Chatbox }></Route> */}
             <Route component={ NotFound }></Route>
         </Switch>
     </BrowserRouter>
