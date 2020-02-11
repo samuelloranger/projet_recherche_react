@@ -1,0 +1,134 @@
+//Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Work+Sans:800&display=swap');
+
+$bleu: #42adf5;
+$gris: #808080;
+
+html {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+	margin: 0;
+}
+
+body,
+p,
+span,
+input,
+textarea,
+label {
+	font-family: "Montserrat";
+	font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: "Work Sans", sans-serif;
+}
+
+h1 {
+	font-weight: 900;
+}
+
+h2 {
+	font-weight: 600;
+}
+
+h3 {
+	font-weight: 400;
+}
+
+label {
+	display: block;
+	color: black;
+	margin-bottom: 3px;
+}
+
+input {
+	border: 0px;
+	width: 245px;
+	height: 30px;
+	padding-left: 5px;
+	border-bottom: 3px solid white;
+	transition: 0.15s ease-in-out;
+
+	&:focus {
+		border-bottom: 3px solid $bleu;
+		outline: none;
+	}
+}
+
+.btn {
+	display: block;
+	width: 100%;
+	height: 40px;
+	margin: 5% 0;
+	padding: 8px;
+	font-weight: 900;
+	border: 0px;
+	color: white;
+	transition: 0.15s ease-in-out;
+	background-color: $bleu;
+	text-transform: uppercase;
+
+	&:hover {
+		transform: translateY(-3px);
+		box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+	}
+
+	&:focus {
+		outline: none;
+		transform: translateY(-3px);
+		box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+	}
+}
+
+body {
+	font-family: "Montserrat", sans-serif;
+	font-size: 16px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.moviesList {
+	&__movieGrid {
+		&__item {
+			h2 {
+				height: 42px;
+				overflow: hidden;
+			}
+
+			img {
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+	&__pageSelect {
+		display: flex;
+		justify-content: center;
+
+		.pageChangeBtn {
+			display: block;
+			margin: 0 5px;
+			color: blue;
+			text-decoration: underline;
+			transition: 0.25s ease-in-out;
+
+			&:hover {
+				color: blueviolet;
+				cursor: pointer;
+			}
+
+			&--current {
+				display: block;
+				margin: 0 5px;
+			}
+		}
+	}
+}

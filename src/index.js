@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './chatbox.scss';
+import './styles.scss';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import MovieList from "./MoviesList";
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
+import MovieList from './MoviesList';
 import NotFound from './components/NotFound';
 
 const Root = () => (
-    <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={ MovieList }></Route>
-            {/* <Route path="/movie/:movie" component={ Chatbox }></Route> */}
-            <Route component={ NotFound }></Route>
-        </Switch>
-    </BrowserRouter>
-); 
+	<BrowserRouter>
+		<Switch>
+			{/* <Route exact path="/" component={ MovieList }></Route> */}
+			<Route path="/page/:page" component={withRouter(MovieList)} />
+			<Route component={NotFound} />
+		</Switch>
+	</BrowserRouter>
+);
 
 ReactDOM.render(<Root />, document.getElementById('root'));
 
