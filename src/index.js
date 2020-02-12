@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom';
 import './styles.scss';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
+
+//Pages
+import Accueil from './components/Accueil';
 import MovieList from './MoviesList';
+
+//404
 import NotFound from './components/NotFound';
 
 const Root = () => (
 	<BrowserRouter>
 		<Switch>
-			{/* <Route exact path="/" component={ MovieList }></Route> */}
-			<Route path="/page/:page" component={withRouter(MovieList)} />
+			<Route exact path="/" component={withRouter(Accueil)} />
+			<Route path="/movielist/" component={withRouter(MovieList)} />
+			<Route path="/movielist/page/:page" component={withRouter(MovieList)} />
 			<Route component={NotFound} />
 		</Switch>
 	</BrowserRouter>
