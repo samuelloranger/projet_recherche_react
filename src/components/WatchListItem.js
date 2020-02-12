@@ -54,7 +54,7 @@ class WatchListItem extends Component {
 	};
 
 	render() {
-		const { id, title, poster_path, seen, loaded } = this.state;
+		const { title, poster_path, seen, loaded } = this.state;
 
 		if (loaded) {
 			if (seen) {

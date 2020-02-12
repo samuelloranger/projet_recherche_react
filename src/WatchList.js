@@ -6,7 +6,7 @@ import base from './firebase';
 
 class WatchList extends Component {
 	state = {
-		liste: {}
+		watchlist: {}
 	};
 
 	/**
@@ -16,44 +16,19 @@ class WatchList extends Component {
 	componentDidMount() {
 		base.syncState('/', {
 			context: this,
-			state: 'liste'
+			state: 'watchlist'
 		});
 	}
 
-	/**
-	 * Ajout de messages au state
-	 */
-	addListItem = (film) => {
-		const liste = { ...this.state.liste };
-
-		liste[`film-${Date.now()}`] = film;
-
-		this.setState({
-			liste: liste
-		});
-	};
-
-	test = () => {
-		const movie = {
-			id: 650,
-			seen: false
-		};
-
-		this.addListItem(movie);
-		this.addListItem(movie);
-		this.addListItem(movie);
-	};
-
 	render() {
-		const { liste } = this.state;
+		const { watchlist } = this.state;
 
 		return (
 			<section className="sectionWatchList">
 				<h1>Movies to watch</h1>
 				<div className="sectionWatchList__watchList">
-					{Object.keys(liste).map((movie, index) => {
-						const { id, seen } = movie;
-						return <WatchListItem key={index} id={id} seen={seen} />;
+					{Object.keys(watchlist).map((movie, index) => {
+						return <WatchListItem key={index} id={watchlist[movie].id} seen={watchlist[movie].seen} />;
 					})}
 				</div>
 			</section>

@@ -3,8 +3,12 @@ import MovieListItem from './components/MovieListItem';
 import PageSelect from './components/PageSelect';
 import Header from './components/Header';
 
+//Firebase
+import base from './firebase';
+
 class MoviesList extends Component {
 	state = {
+		watchlist: {},
 		currentPage: this.props.match.params.page,
 		totalPages: 0,
 		totalResults: 0,
@@ -20,7 +24,26 @@ class MoviesList extends Component {
 	 */
 	componentDidMount() {
 		this.updateMovies();
+
+		base.syncState('/', {
+			context: this,
+			state: 'watchlist'
+		});
 	}
+
+	/**
+	 * Ajout de messages au state
+	 */
+	addListItem = (movie) => {
+		let watchlist = { ...this.state.watchlist };
+
+		watchlist[`film-${Date.now()}`] = movie;
+		console.log(watchlist);
+
+		this.setState({
+			watchlist: watchlist
+		});
+	};
 
 	/**
 	 * Fonction updateMovies
@@ -87,11 +110,13 @@ class MoviesList extends Component {
 
 						<div className="moviesList__grilleFilms row">
 							{movies.map((movie, index) => {
-								const { original_title, poster_path } = movie;
+								const { id, original_title, poster_path } = movie;
 								return (
 									<MovieListItem
 										key={index}
+										id={id}
 										title={original_title}
+										addListItem={this.addListItem}
 										updatePage={this.updatePage}
 										poster_path={poster_path}
 									/>

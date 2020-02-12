@@ -6,8 +6,8 @@ const API_KEY = process.env.REACT_APP_MOVIES_FIREBASE_API_KEY;
 
 const firebaseApp = firebase.initializeApp({
 	apiKey: API_KEY,
-	authDomain: 'movies-to-watch-list.firebaseapp.com',
-	databaseURL: 'https://movies-to-watch-list.firebaseio.com'
+	authDomain: 'movies-watch-list-fca27.firebaseapp.com',
+	databaseURL: 'https://movies-watch-list-fca27.firebaseio.com'
 });
 
 const base = Rebase.createClass(firebase.database());
