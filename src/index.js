@@ -15,8 +15,8 @@ const Root = () => (
 	<BrowserRouter>
 		<Switch>
 			<Route exact path="/" component={withRouter(Accueil)} />
-			<Route path="/movielist/" component={withRouter(MovieList)} />
-			<Route path="/movielist/page/:page" component={withRouter(MovieList)} />
+			<Route exact path="/movielist/" component={withRouter(MovieList)} />
+			<Route exact path="/movielist/page/:page" component={withRouter(MovieList)} />
 			<Route component={NotFound} />
 		</Switch>
 	</BrowserRouter>

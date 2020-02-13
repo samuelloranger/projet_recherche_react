@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
+
+//Components
 import MovieListItem from './components/MovieListItem';
 import PageSelect from './components/PageSelect';
 import Header from './components/Header';
@@ -8,14 +11,15 @@ import base from './firebase';
 
 class MoviesList extends Component {
 	state = {
-		watchlist: {},
+		watchlist: [],
 		currentPage: this.props.match.params.page,
 		totalPages: 0,
 		totalResults: 0,
 		movies: {},
 		listLoaded: false,
 		error: false,
-		errorMessage: ''
+		errorMessage: '',
+		redirect: false
 	};
 
 	/**
@@ -23,12 +27,12 @@ class MoviesList extends Component {
 	 * @description Lorsque le component vient tout juste de se monter
 	 */
 	componentDidMount() {
-		this.updateMovies();
-
 		base.syncState('/', {
 			context: this,
 			state: 'watchlist'
 		});
+
+		this.updateMovies();
 	}
 
 	/**
@@ -38,7 +42,6 @@ class MoviesList extends Component {
 		let watchlist = { ...this.state.watchlist };
 
 		watchlist[`film-${Date.now()}`] = movie;
-		console.log(watchlist);
 
 		this.setState({
 			watchlist: watchlist
@@ -53,11 +56,18 @@ class MoviesList extends Component {
 		const api_url = 'https://api.themoviedb.org/3';
 		const API_KEY = '&api_key=08b94d2812a49610389adc101ee70ad2';
 
+		if (page < 1) {
+			this.setState({
+				redirect: true
+			});
+		}
+
 		fetch(api_url + '/discover/movie?sort_by=popularity.desc' + API_KEY + '&page=' + page)
 			.then((response) => {
 				return response.json();
 			})
 			.then((response) => {
+				// console.log(response);
 				if (response.errors) {
 					this.setState({
 						error: true,
@@ -89,7 +99,11 @@ class MoviesList extends Component {
 
 	// Render la page
 	render() {
-		const { movies, listLoaded, currentPage, totalPages } = this.state;
+		const { movies, listLoaded, currentPage, totalPages, redirect } = this.state;
+
+		if (redirect) {
+			return <Redirect to="/movielist/" />;
+		}
 
 		//Affichage
 		if (listLoaded) {
@@ -130,7 +144,7 @@ class MoviesList extends Component {
 								totalPages={totalPages}
 								changerPage={this.changerPage}
 								updatePage={this.updatePage}
-							/>/>
+							/>
 						</div>
 					</div>
 				</Fragment>

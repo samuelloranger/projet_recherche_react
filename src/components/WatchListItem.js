@@ -3,6 +3,7 @@ import ImgCouverture from './ImgCouverture';
 
 class WatchListItem extends Component {
 	state = {
+		movie: '',
 		id: 0,
 		title: '',
 		poster_path: '',
@@ -11,12 +12,13 @@ class WatchListItem extends Component {
 	};
 
 	componentDidMount() {
-		let { id, seen } = this.props;
+		let { movie } = this.props;
 
 		this.setState(
 			{
-				id: id,
-				seen: seen
+				movie: movie,
+				id: movie.id,
+				seen: movie.seen
 			},
 			() => {
 				this.getMovieInfos();
@@ -29,6 +31,12 @@ class WatchListItem extends Component {
 		this.setState({
 			seen: seen
 		});
+	};
+
+	handleClickRemove = () => {
+		const { handleRemove } = this.props;
+
+		handleRemove(this.state.movie);
 	};
 
 	getMovieInfos = () => {
@@ -72,9 +80,10 @@ class WatchListItem extends Component {
 					<div className="sectionWatchList__watchList__item row mb-3">
 						<ImgCouverture className="col-2" title={title} poster_path={poster_path} />
 						<p className="col-6">{this.state.title}</p>
-						<p className="col-4" onClick={this.handleClickSeen}>
-							I've seen this movie!
-						</p>
+						<div className="col-4">
+							<p onClick={this.handleClickSeen}>I've seen this movie!</p>
+							<p onClick={this.handleClickRemove}>Remove</p>
+						</div>
 					</div>
 				);
 			}
