@@ -84,8 +84,7 @@ class PageSelect extends Component {
 
 	afficherBtnSuivant = () => {
 		const { currentPage, totalPages } = this.state;
-		let newPage = currentPage;
-		newPage++;
+		let newPage = currentPage + 1;
 		if (currentPage < totalPages) {
 			return (
 				<Link

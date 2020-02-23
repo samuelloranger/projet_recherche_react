@@ -2,12 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 
 //Components
-import MovieListItem from './components/MovieListItem';
-import PageSelect from './components/PageSelect';
-import Header from './components/Header';
+import MovieListItem from '../parts/MovieListItem';
+import PageSelect from '../parts/PageSelect';
+import Header from '../parts/Header';
+import Search from '../parts/Search';
 
 //Firebase
-import base from './firebase';
+import base from '../../firebase';
 
 class MoviesList extends Component {
 	state = {
@@ -27,7 +28,7 @@ class MoviesList extends Component {
 	 * @description Lorsque le component vient tout juste de se monter
 	 */
 	componentDidMount() {
-		base.syncState('/', {
+		base.syncState('/watchlist/', {
 			context: this,
 			state: 'watchlist'
 		});
@@ -112,6 +113,8 @@ class MoviesList extends Component {
 					<Header />
 					<div className="moviesList container">
 						<h1 className="pt-2 pb-2">Movies List</h1>
+
+						<Search addListItem={this.addListItem} />
 
 						<div className="moviesList__pageSelect pt-4 pb-4">
 							<PageSelect

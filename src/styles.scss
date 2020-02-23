@@ -1,5 +1,5 @@
 //Google Fonts
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Work+Sans:800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Work+Sans&display=swap');
 
 $bleu: #42adf5;
 $gris: #808080;
@@ -44,11 +44,10 @@ label {
 }
 
 input {
-	border: 0px;
-	width: 245px;
+	border: 1px solid rgba(0, 0, 0, 0.4);
+	width: 100%;
 	height: 30px;
 	padding-left: 5px;
-	border-bottom: 3px solid white;
 	transition: 0.15s ease-in-out;
 
 	&:focus {
@@ -91,17 +90,76 @@ body {
 	text-align: center;
 }
 
+.header {
+	&__navigation {
+		&__liste {
+			list-style-type: none;
+			padding: 0;
+			display: flex;
+			margin-top: 25px;
+
+			li {
+				margin-right: 25px;
+				font-size: 18px;
+
+				a {
+					transition: 0.15s ease-in-out;
+					text-decoration: none;
+				}
+
+				.icon {
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+}
+
 .moviesList {
 	&__movieGrid {
 		&__item {
+			position: relative;
+
+			&:hover {
+				img {
+					filter: brightness(50%) drop-shadow(0 3px 8px black);
+				}
+
+				.icon {
+					right: 25px;
+					opacity: 1;
+				}
+			}
+
 			h2 {
-				height: 42px;
+				height: 55px;
 				overflow: hidden;
+				color: black;
+				font-size: 22px;
 			}
 
 			img {
 				display: block;
 				width: 100%;
+				transition: all 0.25s ease-in-out;
+				filter: brightness(100%) drop-shadow(0 3px 3px black);
+				margin-bottom: 25px;
+			}
+
+			.icon {
+				position: absolute;
+				top: 75px;
+				right: 0;
+				font-size: 32px;
+				color: white;
+				transition: 0.15s ease-in-out;
+				opacity: 0;
+
+				&:hover {
+					transform: translateY(-4px);
+					filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.4));
+					cursor: pointer;
+				}
 			}
 		}
 	}
@@ -125,6 +183,124 @@ body {
 				display: block;
 				margin: 0 5px;
 			}
+		}
+	}
+
+	.recherche {
+		position: relative;
+
+		&__liste {
+			background-color: white;
+			width: 100%;
+			position: absolute;
+			top: 58px;
+			left: 0;
+			box-shadow: 0px 0px 3px black;
+			z-index: 10;
+
+			&__item {
+				margin: 5px 0 5px 0;
+				display: flex;
+				padding: 6px;
+				// transition: 0.15s ease-in-out;
+
+				&:hover {
+					color: white;
+					font-weight: bold;
+					background-color: $gris;
+					cursor: pointer;
+				}
+
+				.image {
+					width: 64px;
+					height: 64px;
+					overflow: hidden;
+
+					img {
+						display: block;
+						width: 100%;
+					}
+				}
+
+				.movieInfos {
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					margin-left: 15px;
+
+					&__title {
+						margin: 0;
+						font-size: 18px;
+						font-weight: bold;
+					}
+
+					&__addButton {
+						display: flex;
+						font-size: 16px;
+						margin: 0;
+
+						&__icon {
+							display: block;
+							margin-top: 3px;
+							margin-right: 10px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.sectionWatchList {
+	&__watchList {
+		&__item {
+			overflow: hidden;
+			padding: 15px 0;
+			border-bottom: 3px solid rgba(0, 0, 0, 0.4);
+			transition: 0.25s ease-in-out;
+			max-height: 100%;
+
+			&:last-child {
+				border: none;
+			}
+
+			.title {
+				font-weight: bold;
+				font-size: 18px;
+			}
+
+			.actions {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: flex-end;
+
+				.icone {
+					font-size: 28px;
+					text-align: center;
+					transition: 0.15s ease-in-out;
+					width: 32px;
+
+					&:hover {
+						transform: translateY(-4px);
+						filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
+					}
+
+					&--green {
+						color: green;
+					}
+
+					&--red {
+						color: red;
+					}
+				}
+			}
+		}
+	}
+
+	&__seenList {
+		&__title {
+			margin-top: 75px;
 		}
 	}
 }

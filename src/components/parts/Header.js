@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faList } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
 	return (
@@ -8,10 +10,14 @@ const Header = () => {
 				{/* <p className="header__navigation__logo">Movie List</p> */}
 				<ul className="header__navigation__liste">
 					<li className="elementListe">
-						<Link to="/">Home</Link>
+						<Link to="/">
+							<FontAwesomeIcon className="icon" icon={faHome} />Home
+						</Link>
 					</li>
 					<li>
-						<Link to="/movielist/">Movie List</Link>
+						<Link to="/movielist/">
+							<FontAwesomeIcon className="icon" icon={faList} />Movie index
+						</Link>
 					</li>
 				</ul>
 			</nav>
