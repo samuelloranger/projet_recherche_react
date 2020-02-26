@@ -89,7 +89,7 @@ class WatchList extends Component {
 					) : (
 						<h2 className="sectionWatchList__seenList__title">No movies seen</h2>
 					)}
-					<div className="sectionWatchList__watchList">
+					<div className="sectionWatchList__seenList">
 						{seenList.map((movie) => {
 							if (movie[1].seen) {
 								return (
