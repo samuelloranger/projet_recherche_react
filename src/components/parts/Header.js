@@ -1,28 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faList } from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
 
-const Header = () => {
-	return (
-		<header className="header container">
-			<nav className="header__navigation">
-				{/* <p className="header__navigation__logo">Movie List</p> */}
-				<ul className="header__navigation__liste">
-					<li className="elementListe">
-						<Link to="/">
-							<FontAwesomeIcon className="icon" icon={faHome} />Home
-						</Link>
-					</li>
-					<li>
-						<Link to="/movielist/">
-							<FontAwesomeIcon className="icon" icon={faList} />Movie index
-						</Link>
-					</li>
-				</ul>
-			</nav>
-		</header>
-	);
-};
+function Header({ username }) {
 
-export default Header;
+    const formatUsername = () => /[aeiouy]/i.test(username[0]) ? `d'${username}` : `de ${username}`;
+    
+    return (
+        <header className="header">
+            <div className="container">
+                <h1 className="text-center">La boîte à recettes { formatUsername() } </h1>
+            </div>
+        </header>
+    )
+}
+
+export default Header

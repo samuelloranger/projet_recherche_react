@@ -1,9 +1,21 @@
-//Google Fonts
+/************************************
+			GOOGLE FONTS
+************************************/
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Work+Sans&display=swap');
 
+
+
+/************************************
+			  COLORS
+************************************/
 $bleu: #42adf5;
 $gris: #808080;
 
+
+
+/************************************
+			BASE STYLES
+************************************/
 body {
 	margin: 0;
 }
@@ -43,12 +55,13 @@ label {
 	margin-bottom: 3px;
 }
 
-input {
+input, textarea {
 	border: 1px solid rgba(0, 0, 0, 0.4);
 	width: 100%;
 	height: 30px;
 	padding-left: 5px;
 	transition: 0.15s ease-in-out;
+	resize: none;
 
 	&:focus {
 		border-bottom: 3px solid $bleu;
@@ -56,11 +69,19 @@ input {
 	}
 }
 
+textarea{
+	height: 150px;
+}
+
+
+/************************************
+			  BOUTTONS
+************************************/
 .btn {
 	display: block;
-	width: 100%;
+	width: 300px;
 	height: 40px;
-	margin: 5% 0;
+	margin: 5px 0 15px 0;
 	padding: 8px;
 	font-weight: 900;
 	border: 0px;
@@ -71,6 +92,7 @@ input {
 
 	&:hover {
 		transform: translateY(-3px);
+		color: white;
 		box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
 	}
 
@@ -86,297 +108,123 @@ body {
 	font-size: 16px;
 }
 
+
+/************************************
+		  REUSABLE CLASSES	
+************************************/
 .text-center {
 	text-align: center;
 }
 
-.header {
-	&__navigation {
-		&__liste {
-			list-style-type: none;
-			padding: 0;
-			display: flex;
-			margin-top: 25px;
+.error{
+	color: red;
+	margin-top: 8px;
 
-			li {
-				margin-right: 25px;
-				font-size: 18px;
-
-				a {
-					transition: 0.15s ease-in-out;
-					text-decoration: none;
-				}
-
-				.icon {
-					margin-right: 5px;
-				}
-			}
-		}
+	svg{
+		margin-right: 5px;
 	}
 }
 
-.moviesList {
-	&__movieGrid {
-		&__item {
+
+/************************************
+			 HEADER
+************************************/
+.header{
+	padding: 15px 0;
+	background-color: red;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+
+	h1{
+		margin: 0;
+	}
+}
+
+
+/************************************
+			  FORM
+************************************/
+.containerForm{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+
+	.formConnexion{
+		width: 40%;
+		
+	}
+}
+
+
+/************************************
+			 RECIPES
+************************************/
+.recipes{
+	position: relative;
+
+	&__title{
+		margin-top: 25px;
+	}
+
+	&__addBtn{
+		position: absolute;
+		right: 25px;
+		border-radius: 32px;
+		background-color: red;
+		width: 42px;
+		height: 42px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		transition: 0.15s ease-in-out;
+
+		&:hover{
+			transform: translateY(-4px);
+		}
+
+		a{
+			color: white;
+			font-size: 25px;
+		}
+	}
+
+	&__content{
+		&__card{
+			border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+			margin-bottom: 40px;
 			position: relative;
 
-			&:hover {
-				img {
-					filter: brightness(50%) drop-shadow(0 3px 8px black);
-				}
-
-				.icon,
-				.inWatchlist {
-					right: 25px;
-					opacity: 1;
-				}
-			}
-
-			h2 {
-				height: 55px;
-				overflow: hidden;
-				color: black;
-				font-size: 22px;
-			}
-
-			img {
-				display: block;
-				width: 100%;
-				transition: all 0.25s ease-in-out;
-				filter: brightness(100%) drop-shadow(0 3px 3px black);
-				margin-bottom: 25px;
-			}
-
-			.inWatchlist {
-				position: absolute;
-				top: 75px;
-				right: 0;
-				font-size: 13px;
-				color: white;
-				font-weight: bold;
-				transition: 0.15s ease-in-out;
-				opacity: 0;
-
-				.checkIcon {
-					margin-left: 5px;
-					font-size: 18px;
-					color: #00ff00;
-				}
-			}
-
-			.icon {
-				position: absolute;
-				top: 75px;
-				right: 0;
-				font-size: 32px;
-				color: white;
-				transition: 0.15s ease-in-out;
-				opacity: 0;
-
-				&:hover {
-					transform: translateY(-4px);
-					filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.4));
-					cursor: pointer;
-				}
-			}
-		}
-	}
-	&__pageSelect {
-		display: flex;
-		justify-content: center;
-
-		.pageChangeBtn {
-			display: block;
-			margin: 0 5px;
-			color: blue;
-			text-decoration: underline;
-			transition: 0.25s ease-in-out;
-
-			&:hover {
-				color: blueviolet;
-				cursor: pointer;
-			}
-
-			&--current {
-				display: block;
-				margin: 0 5px;
-			}
-		}
-	}
-
-	.recherche {
-		position: relative;
-
-		&__liste {
-			background-color: white;
-			width: 100%;
-			position: absolute;
-			top: 58px;
-			left: 0;
-			box-shadow: 0px 0px 3px black;
-			z-index: 10;
-
-			&__item {
-				margin: 5px 0 5px 0;
-				display: flex;
-				padding: 6px;
-				transition: 0.15s ease-in-out;
-
-				&:hover {
-					color: white;
-					font-weight: bold;
-					background-color: $gris;
-					cursor: pointer;
-
-					.movieInfos__isInWatchlist__icon {
-						color: #00ff00;
-					}
-				}
-
-				.image {
-					width: 64px;
-					height: 64px;
-					overflow: hidden;
-					display: flex;
-
-					img {
-						display: block;
-						width: 100%;
-						object-fit: cover;
-					}
-				}
-
-				.movieInfos {
-					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-					margin-left: 15px;
-
-					&__title {
-						margin: 0;
-						font-size: 18px;
-						font-weight: bold;
-					}
-
-					&__addButton,
-					&__isInWatchlist {
-						display: flex;
-						font-size: 16px;
-						margin: 0;
-
-						&__icon {
-							display: block;
-							margin-top: 3px;
-							margin-right: 10px;
-						}
-					}
-
-					&__isInWatchlist {
-						&__icon {
-							transition: 0.15s ease-in-out;
-							color: green;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-.sectionWatchList {
-	&__watchList {
-		&__item {
-			padding: 15px 0;
-			border-bottom: 3px solid rgba(0, 0, 0, 0.4);
-
-			&:last-child {
+			&:last-child{
 				border: none;
 			}
 
-			.title {
+			.title{
+				text-align: center;
 				font-weight: bold;
-				font-size: 18px;
+				margin-bottom: 25px;
 			}
 
-			img {
-				display: block;
-				height: 100%;
-			}
-
-			.actions {
+			.content{
 				display: flex;
-				flex-direction: column;
-				justify-content: space-around;
-				align-items: flex-end;
+				justify-content: space-between;
+				position: relative;
 
-				.icone {
-					font-size: 28px;
-					text-align: center;
-					transition: 0.15s ease-in-out;
-					width: 32px;
-
-					&:hover {
-						transform: translateY(-4px);
-						filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
-					}
-
-					&--green {
-						color: green;
-					}
+				&__editLink{
+					position: absolute;
+					top: 0;
+					right: 0;
 				}
-			}
-		}
-	}
 
-	&__seenList {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
+				&__image{
+					display: block;
+					height: 100%;
+					width: 33%;
+				}
 
-		&__title {
-			margin-top: 75px;
-		}
-
-		&__item {
-			width: 100%;
-			display: flex;
-			border-bottom: 3px solid rgba(0, 0, 0, 0.4);
-			padding: 15px 0;
-
-			@media (min-width: 768px) {
-				width: 49%;
-			}
-
-			.title {
-				font-weight: bold;
-				font-size: 18px;
-			}
-
-			img {
-				padding: 0;
-				display: block;
-			}
-
-			.actions {
-				display: flex;
-				flex-direction: column;
-				justify-content: space-around;
-				align-items: flex-end;
-
-				.icone {
-					font-size: 24px;
-					text-align: center;
-					transition: 0.15s ease-in-out;
-					width: 32px;
-
-					&:hover {
-						transform: translateY(-4px);
-						filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
-					}
-
-					&--red {
-						color: red;
-					}
+				&__infos{
+					width: 63%;
 				}
 			}
 		}

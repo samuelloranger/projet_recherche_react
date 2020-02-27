@@ -5,19 +5,16 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 
 //Pages
-import MovieList from './components/pages/MoviesList';
-import WatchList from './components/pages/WatchList';
-
-//404
-import NotFound from './components/pages/NotFound';
+import * as Pages from "./pages";
 
 const Root = () => (
 	<BrowserRouter>
 		<Switch>
-			<Route exact path="/" component={withRouter(WatchList)} />
-			<Route exact path="/movielist/" component={withRouter(MovieList)} />
-			<Route exact path="/movielist/page/:page" component={withRouter(MovieList)} />
-			<Route component={NotFound} />
+			<Route exact path="/" component={ withRouter(Pages.Connexion) } />
+			<Route exact path="/username/:username" component={ withRouter(Pages.App) } />
+			<Route exact path="/username/:username/add" component={ withRouter(Pages.EditRecipe) } />
+			<Route exact path="/username/:username/edit/:key" component={ withRouter(Pages.EditRecipe) } />
+			<Route component={ withRouter(Pages.NotFound) } />
 		</Switch>
 	</BrowserRouter>
 );
