@@ -32,15 +32,10 @@ class Search extends Component {
 				return response.json();
 			})
 			.then((response) => {
-				this.setState(
-					{
-						movies: response.results,
-						listEmpty: false
-					},
-					() => {
-						console.log(this.state.movies);
-					}
-				);
+				this.setState({
+					movies: response.results,
+					listEmpty: false
+				});
 			})
 			.catch((error) => {
 				console.log(error);

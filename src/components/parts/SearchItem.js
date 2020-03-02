@@ -18,7 +18,7 @@ const SearchItem = ({ id, title, addListItem, poster_path }) => {
 			<div className="image">
 				<ImgCouverture title={title} poster_path={poster_path} />
 			</div>
-			<div class="movieInfos">
+			<div className="movieInfos">
 				<p className="movieInfos__title">{title}</p>
 				<p className="movieInfos__addButton">
 					<FontAwesomeIcon className="movieInfos__addButton__icon" icon={faPlus} /> Add to watchlist
