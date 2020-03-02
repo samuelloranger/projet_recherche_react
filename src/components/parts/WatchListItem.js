@@ -31,6 +31,7 @@ const WatchListItem = ({ movie, wathlist_id, handleSeen, handleRemove }) => {
 				console.log(error);
 			});
 	};
+
 	getMovieInfos();
 
 	useEffect(
@@ -63,14 +64,14 @@ const WatchListItem = ({ movie, wathlist_id, handleSeen, handleRemove }) => {
 
 	if (loaded) {
 		return (
-			<div className="sectionWatchList__watchList__item row mb-3">
-				<ImgCouverture className="col-2" title={title} poster_path={poster_path} />
-				<p className="title col-6">{title}</p>
+			<div className={seen ? 'sectionWatchList__seenList__item' : 'sectionWatchList__watchList__item row mb-3'}>
+				<ImgCouverture className={seen ? 'col-3' : 'col-2'} title={title} poster_path={poster_path} />
+				<p className={seen ? 'title col-5' : 'title col-6'}>{title}</p>
 				<div className="actions col-4">
-					{!seen ? (
-						<FontAwesomeIcon className="icone icone--green" icon={faCheck} onClick={handleClickSeen} />
-					) : (
+					{seen ? (
 						<FontAwesomeIcon className="icone icone--red" icon={faMinusSquare} onClick={handleClickSeen} />
+					) : (
+						<FontAwesomeIcon className="icone icone--green" icon={faCheck} onClick={handleClickSeen} />
 					)}
 					<FontAwesomeIcon className="icone" icon={faTrash} onClick={handleClickRemove} />
 				</div>

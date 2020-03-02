@@ -100,7 +100,7 @@ class MoviesList extends Component {
 
 	// Render la page
 	render() {
-		const { movies, listLoaded, currentPage, totalPages, redirect } = this.state;
+		const { watchlist, movies, listLoaded, currentPage, totalPages, redirect } = this.state;
 
 		if (redirect) {
 			return <Redirect to="/movielist/" />;
@@ -134,8 +134,8 @@ class MoviesList extends Component {
 										id={id}
 										title={original_title}
 										addListItem={this.addListItem}
-										updatePage={this.updatePage}
 										poster_path={poster_path}
+										watchlist={watchlist}
 									/>
 								);
 							})}

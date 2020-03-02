@@ -81,7 +81,7 @@ class Search extends Component {
 	};
 
 	render() {
-		const { movies, recherche, listEmpty } = this.state;
+		const { watchlist, movies, recherche, listEmpty } = this.state;
 
 		return (
 			<div className="recherche">
@@ -100,6 +100,7 @@ class Search extends Component {
 							return (
 								<SearchItem
 									key={movie.id}
+									watchlist={watchlist}
 									title={movie.original_title}
 									id={movie.id}
 									poster_path={movie.poster_path}
