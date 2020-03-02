@@ -3,15 +3,11 @@
 ************************************/
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Work+Sans&display=swap');
 
-
-
 /************************************
 			  COLORS
 ************************************/
 $bleu: #42adf5;
 $gris: #808080;
-
-
 
 /************************************
 			BASE STYLES
@@ -55,7 +51,8 @@ label {
 	margin-bottom: 3px;
 }
 
-input, textarea {
+input,
+textarea {
 	border: 1px solid rgba(0, 0, 0, 0.4);
 	width: 100%;
 	height: 30px;
@@ -69,10 +66,9 @@ input, textarea {
 	}
 }
 
-textarea{
+textarea {
 	height: 150px;
 }
-
 
 /************************************
 			  BOUTTONS
@@ -108,7 +104,6 @@ body {
 	font-size: 16px;
 }
 
-
 /************************************
 		  REUSABLE CLASSES	
 ************************************/
@@ -116,58 +111,79 @@ body {
 	text-align: center;
 }
 
-.error{
+.error {
 	color: red;
 	margin-top: 8px;
 
-	svg{
+	svg {
 		margin-right: 5px;
 	}
 }
 
-
 /************************************
 			 HEADER
 ************************************/
-.header{
+.header {
 	padding: 15px 0;
 	background-color: red;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 
-	h1{
+	h1 {
 		margin: 0;
 	}
 }
 
-
 /************************************
 			  FORM
 ************************************/
-.containerForm{
+.containerForm {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
 
-	.formConnexion{
+	.formConnexion {
 		width: 40%;
-		
+
+		label {
+			margin-top: 15px;
+		}
+
+		small,
+		span {
+			display: block;
+		}
+
+		&__btns {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 15px;
+
+			.btn {
+				width: 48%;
+				margin: 0;
+
+				&--register {
+					background-color: #ffbb00;
+					color: black;
+				}
+			}
+		}
 	}
 }
-
 
 /************************************
 			 RECIPES
 ************************************/
-.recipes{
+.recipes {
 	position: relative;
 
-	&__title{
+	&__title {
 		margin-top: 25px;
 	}
 
-	&__addBtn{
+	&__addBtn {
 		position: absolute;
 		right: 25px;
 		border-radius: 32px;
@@ -180,50 +196,50 @@ body {
 		align-items: center;
 		transition: 0.15s ease-in-out;
 
-		&:hover{
+		&:hover {
 			transform: translateY(-4px);
 		}
 
-		a{
+		a {
 			color: white;
 			font-size: 25px;
 		}
 	}
 
-	&__content{
-		&__card{
+	&__content {
+		&__card {
 			border-bottom: 2px solid rgba(0, 0, 0, 0.4);
 			margin-bottom: 40px;
 			position: relative;
 
-			&:last-child{
+			&:last-child {
 				border: none;
 			}
 
-			.title{
+			.title {
 				text-align: center;
 				font-weight: bold;
 				margin-bottom: 25px;
 			}
 
-			.content{
+			.content {
 				display: flex;
 				justify-content: space-between;
 				position: relative;
 
-				&__editLink{
+				&__editLink {
 					position: absolute;
 					top: 0;
 					right: 0;
 				}
 
-				&__image{
+				&__image {
 					display: block;
 					height: 100%;
 					width: 33%;
 				}
 
-				&__infos{
+				&__infos {
 					width: 63%;
 				}
 			}

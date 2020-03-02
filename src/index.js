@@ -5,16 +5,17 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 
 //Pages
-import * as Pages from "./pages";
+import * as Pages from './pages';
 
 const Root = () => (
 	<BrowserRouter>
 		<Switch>
-			<Route exact path="/" component={ withRouter(Pages.Connexion) } />
-			<Route exact path="/username/:username" component={ withRouter(Pages.App) } />
-			<Route exact path="/username/:username/add" component={ withRouter(Pages.EditRecipe) } />
-			<Route exact path="/username/:username/edit/:key" component={ withRouter(Pages.EditRecipe) } />
-			<Route component={ withRouter(Pages.NotFound) } />
+			<Route exact path="/" component={withRouter(Pages.Connexion)} />
+			<Route exact path="/register" component={withRouter(Pages.Inscription)} />
+			<Route exact path="/:username" component={withRouter(Pages.RecipeBox)} />
+			<Route exact path="/:username/add" component={withRouter(Pages.EditRecipe)} />
+			<Route exact path="/:username/edit/:key" component={withRouter(Pages.EditRecipe)} />
+			<Route component={withRouter(Pages.NotFound)} />
 		</Switch>
 	</BrowserRouter>
 );
