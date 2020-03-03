@@ -84,7 +84,7 @@ class EditRecipe extends Component {
      * @description Edit a recipe
      */
 	handleEdit = () => {
-		const { user, nom, image, ingredients, instructions, key, done } = this.state;
+		const { user, nom, image, ingredients, instructions, key } = this.state;
 
 		const recipe = {
 			nom: nom,
@@ -141,8 +141,8 @@ class EditRecipe extends Component {
 					{!edit ? (
 						<Button action={this.handleAddRecipe}>Ajouter</Button>
 					) : (
-						<Button action={this.handleEdit}>Modifier</Button>
-					)}
+							<Button action={this.handleEdit}>Modifier</Button>
+						)}
 				</main>
 			</Fragment>
 		);

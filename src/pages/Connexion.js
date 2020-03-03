@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
 //Librairies
@@ -12,16 +12,16 @@ import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import base from '../firebase';
 
 function Connexion() {
-	const [ email, setEmail ] = useState('');
-	const [ password, setPassword ] = useState('');
-	const [ emailValid, setEmailValid ] = useState(true);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [emailValid, setEmailValid] = useState(true);
 
-	const [ slug, setSlug ] = useState('');
+	const [slug, setSlug] = useState('');
 
-	const [ connected, setConnected ] = useState(false);
+	const [connected, setConnected] = useState(false);
 
-	const [ emailNotFound, setEmailNotFound ] = useState(false);
-	const [ wrongPassword, setWrongPassword ] = useState(false);
+	const [emailNotFound, setEmailNotFound] = useState(false);
+	const [wrongPassword, setWrongPassword] = useState(false);
 
 	const patternName = new RegExp('[A-Za-z-]{1,}');
 
@@ -31,7 +31,7 @@ function Connexion() {
 				email.search(patternName) !== 0 ? setEmailValid(false) : setEmailValid(true);
 			}
 		},
-		[ email, password, patternName ]
+		[email, password, patternName]
 	);
 
 	/**

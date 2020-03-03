@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useContext } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Header, Card, FontAwesomeIcon } from '../components/parts';
 
 //Router
@@ -11,14 +11,13 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import base from '../firebase';
 
 //Recipes base
-import recipebase from '../assets/recettes';
+// import recipebase from '../assets/recettes';
 
 function App(props) {
 	const slug = props.match.params.username;
-	const [ username, setUsername ] = useState('');
-	const [ fullName, setFullName ] = useState('');
-	const [ recipes, setRecipes ] = useState({});
-	const [ loaded, setLoaded ] = useState(false);
+	const [fullName, setFullName] = useState('');
+	const [recipes, setRecipes] = useState({});
+	const [loaded, setLoaded] = useState(false);
 
 	if (!loaded) {
 		base
@@ -26,7 +25,6 @@ function App(props) {
 				context: this
 			})
 			.then((data) => {
-				setUsername(data.username);
 				setFullName(data.fullName);
 				setRecipes(data.recipes);
 				setLoaded(true);
@@ -36,11 +34,11 @@ function App(props) {
 			});
 	}
 
-	const addAllRecipes = () => {
-		base.post(`${slug}/recipes`, {
-			data: recipebase
-		});
-	};
+	// const addAllRecipes = () => {
+	// 	base.post(`${slug}/recipes`, {
+	// 		data: recipebase
+	// 	});
+	// };
 
 	const cards = () => {
 		return Object.entries(recipes).map((recipe) => {
